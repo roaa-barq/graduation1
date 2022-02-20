@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:waste_collector/screens/welcome.dart';
+import 'package:waste_collector/screens/splash.dart';
 import 'package:waste_collector/screens/login.dart';
 import 'package:waste_collector/screens/signup.dart';
-// import 'package:http/http.dart' as http;
-// import 'src/waste_collector.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +14,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        //    AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [Locale("ar", "AE")],
+      locale: Locale("ar", "AE"),
       title: 'Welcome',
-      home: const login(),
+      home: splash(),
     );
   }
 }

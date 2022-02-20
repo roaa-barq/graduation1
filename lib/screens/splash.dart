@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:waste_collector/constants.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class welcome extends StatelessWidget {
-  const welcome({Key? key}) : super(key: key);
+class splash extends StatelessWidget {
+  const splash({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,9 @@ class welcome extends StatelessWidget {
                     decoration: TextDecoration.none,
                     //
                   )),
+              SizedBox(
+                height: 10,
+              ),
               Text('العنوان',
                   style: TextStyle(
                     fontFamily: 'El Messiri',
@@ -73,29 +77,25 @@ class welcome extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Image.asset('assets/photos/welcome.png'),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 70),
-            child: FlatButton(
-                height: 60,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                onPressed: () {},
-                color: Colors.white,
-                child: Text(
-                  'تسجيل الدخول',
-                  style: TextStyle(
-                    fontFamily: 'El Messiri',
-                    fontSize: 25,
-                    color: Colors.black,
-                  ),
-                )),
+          SizedBox(
+            height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 70),
+              child: SpinKitFadingCircle(
+                color: Colors.white,
+                size: 50,
+                duration: Duration(milliseconds: 3000),
+              )),
+          SizedBox(
+            height: 10,
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
             child: FlatButton(
                 onPressed: () {},
                 child: Text(
-                  'لا تمتلك حساب ؟ إنشاء حساب جديد',
+                  'تخطي',
                   style: TextStyle(
                     fontFamily: 'El Messiri',
                     fontSize: 20,
