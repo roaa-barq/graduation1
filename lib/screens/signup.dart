@@ -40,105 +40,200 @@ class signup extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 150, 30, 0),
-                child: TextField(
-                    cursorColor: Colors.black,
-                    obscureText: true,
-                    textAlign: TextAlign.right,
-                    decoration: ThemeHelper().textInputDecoration(
-                        Icons.perm_identity,
-                        "الإسم",
-                        "أدخل الإسم الرباعي الخاص بك ..")),
-              ),
+                  padding: const EdgeInsets.fromLTRB(30, 150, 30, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: TextField(
+                          cursorColor: Colors.black,
+                          obscureText: true,
+                          textAlign: TextAlign.right,
+                          decoration: ThemeHelper().textInputDecoration(
+                              Icons.perm_identity,
+                              "الإسم",
+                              "أدخل الإسم الرباعي الخاص بك ..")),
+                    ),
+                    SizedBox(width: 50, child: Icon(Icons.mic))
+                  ])),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 210, 30, 0),
-                child: TextField(
-                    cursorColor: Colors.black,
-                    obscureText: true,
-                    textAlign: TextAlign.right,
-                    decoration: ThemeHelper().textInputDecoration(
-                        Icons.phone_android,
-                        "رقم الهاتف",
-                        "أدخل رقم الهاتف الخاص بك ..")),
-              ),
+                  padding: const EdgeInsets.fromLTRB(30, 210, 30, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: TextField(
+                          cursorColor: Colors.black,
+                          obscureText: true,
+                          textAlign: TextAlign.right,
+                          decoration: ThemeHelper().textInputDecoration(
+                              Icons.phone_android,
+                              "رقم الهاتف",
+                              "أدخل رقم الهاتف الخاص بك ..")),
+                    ),
+                    SizedBox(width: 50, child: Icon(Icons.mic))
+                  ])),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 270, 30, 0),
-                child: TextField(
-                    cursorColor: Colors.black,
-                    obscureText: true,
-                    textAlign: TextAlign.right,
-                    decoration: ThemeHelper().textInputDecoration(
-                        Icons.perm_identity,
-                        "رقم الهوية",
-                        "أدخل رقم الهوية الخاص بك ..")),
-              ),
+                  padding: const EdgeInsets.fromLTRB(30, 270, 30, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: TextField(
+                          cursorColor: Colors.black,
+                          obscureText: true,
+                          textAlign: TextAlign.right,
+                          decoration: ThemeHelper().textInputDecoration(
+                              Icons.perm_identity,
+                              "رقم الهوية",
+                              "أدخل رقم الهوية الخاص بك ..")),
+                    ),
+                    SizedBox(width: 50, child: Icon(Icons.mic))
+                  ])),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 330, 30, 0),
-                child: TextField(
-                    cursorColor: Colors.black,
-                    obscureText: true,
-                    textAlign: TextAlign.right,
-                    decoration: ThemeHelper().textInputDecoration(Icons.lock,
-                        "كلمة المرور", "أدخل كلمة المرور الخاصة بك ..")),
-              ),
+                  padding: const EdgeInsets.fromLTRB(30, 330, 30, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: TextField(
+                          cursorColor: Colors.black,
+                          obscureText: true,
+                          textAlign: TextAlign.right,
+                          decoration: InputDecoration(
+                              labelText: 'كلمة المرور',
+                              hintText: 'أدخل كلمة المرور الخاصة بك ..',
+                              suffixIcon: Icon(
+                                Icons.remove_red_eye,
+                                color: Colors.black,
+                              ),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              labelStyle: TextStyle(
+                                fontFamily: 'El Messiri',
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.black)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.black)),
+                              errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.red, width: 2.0)),
+                              focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.red, width: 2.0)))),
+                    ),
+                    SizedBox(width: 50, child: Icon(Icons.mic))
+                  ])),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 390, 30, 0),
-                child: TextField(
-                    cursorColor: Colors.black,
-                    obscureText: true,
-                    textAlign: TextAlign.right,
-                    decoration: ThemeHelper().textInputDecoration(
-                        Icons.lock,
-                        "تأكيد كلمة المرور",
-                        "أعد كتابة كلمة المرور الخاصة بك ..")),
-              ),
+                  padding: const EdgeInsets.fromLTRB(30, 390, 30, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: TextField(
+                          cursorColor: Colors.black,
+                          obscureText: true,
+                          textAlign: TextAlign.right,
+                          decoration: InputDecoration(
+                              labelText: 'تأكيد كلمة المرور',
+                              hintText: 'أعد كتابة كلمة المرور الخاصة بك ..',
+                              suffixIcon: Icon(
+                                Icons.remove_red_eye,
+                                color: Colors.black,
+                              ),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.black,
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              labelStyle: TextStyle(
+                                fontFamily: 'El Messiri',
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.black)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Colors.black)),
+                              errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.red, width: 2.0)),
+                              focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.red, width: 2.0)))),
+                    ),
+                    SizedBox(width: 50, child: Icon(Icons.mic))
+                  ])),
               Padding(
-                padding: const EdgeInsets.fromLTRB(60, 460, 60, 0),
-                child: FlatButton(
-                    onPressed: () {},
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 60,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [
-                                greenLight,
-                                greenDark,
-                              ],
-                            ),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                        child: Center(
+                  padding: const EdgeInsets.fromLTRB(30, 460, 30, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.4,
+                      child: FlatButton(
+                          onPressed: () {},
+                          textColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.centerRight,
+                                    end: Alignment.centerLeft,
+                                    colors: [
+                                      greenLight,
+                                      greenDark,
+                                    ],
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30))),
+                              child: Center(
+                                child: Text(
+                                  'إنشاء حساب',
+                                  style: TextStyle(
+                                    fontFamily: 'El Messiri',
+                                    fontSize: 22,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ))),
+                    ),
+                    SizedBox(width: 50, child: Icon(Icons.mic))
+                  ])),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(22, 520, 22, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.3,
+                      child: FlatButton(
+                          onPressed: () {},
                           child: Text(
-                            'إنشاء حساب',
+                            'هل تمتلك حساب ؟ تسجيل الدخول',
                             style: TextStyle(
                               fontFamily: 'El Messiri',
-                              fontSize: 22,
-                              color: Colors.white,
+                              fontSize: 18,
+                              color: Colors.black,
                             ),
-                          ),
-                        ))),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 520),
-                  child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        'هل تمتلك حساب ؟ تسجيل الدخول',
-                        style: TextStyle(
-                          fontFamily: 'El Messiri',
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                      )),
-                ),
-              )
+                          )),
+                    ),
+                    SizedBox(width: 1, child: Icon(Icons.mic))
+                  ])),
             ],
           ),
         ],

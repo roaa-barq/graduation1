@@ -73,87 +73,144 @@ class login extends StatelessWidget {
               height: 30,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                  cursorColor: Colors.black,
-                  obscureText: true,
-                  textAlign: TextAlign.right,
-                  decoration: ThemeHelper().textInputDecoration(
-                      Icons.perm_identity,
-                      "رقم الهوية",
-                      "أدخل رقم الهوية الخاص بك ..")),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: TextField(
+                        cursorColor: Colors.black,
+                        obscureText: true,
+                        textAlign: TextAlign.right,
+                        decoration: ThemeHelper().textInputDecoration(
+                            Icons.perm_identity,
+                            "رقم الهوية",
+                            "أدخل رقم الهوية الخاص بك ..")),
+                  ),
+                  SizedBox(width: 50, child: Icon(Icons.mic))
+                ])),
             SizedBox(
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                  cursorColor: Colors.black,
-                  obscureText: true,
-                  textAlign: TextAlign.right,
-                  decoration: ThemeHelper().textInputDecoration(Icons.lock,
-                      "كلمة المرور", "أدخل كلمة المرور الخاصة بك ..")),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: TextField(
+                        cursorColor: Colors.black,
+                        obscureText: true,
+                        textAlign: TextAlign.right,
+                        decoration: InputDecoration(
+                            labelText: 'كلمة المرور',
+                            hintText: 'أدخل كلمة المرور الخاصة بك ..',
+                            suffixIcon: Icon(
+                              Icons.remove_red_eye,
+                              color: Colors.black,
+                            ),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Colors.black,
+                            ),
+                            fillColor: Colors.white,
+                            filled: true,
+                            labelStyle: TextStyle(
+                              fontFamily: 'El Messiri',
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),
+                            contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: Colors.black)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(color: Colors.black)),
+                            errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 2.0)),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    color: Colors.red, width: 2.0)))),
+                  ),
+                  SizedBox(width: 50, child: Icon(Icons.mic))
+                ])),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        'هل نسيت كلمة المرور ؟',
-                        style: TextStyle(
-                          fontFamily: 'El Messiri',
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      )),
-                )),
+                    alignment: Alignment.centerLeft,
+                    child: Row(children: <Widget>[
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.4,
+                        child: FlatButton(
+                            onPressed: () {},
+                            child: Text(
+                              'هل نسيت كلمة المرور ؟',
+                              style: TextStyle(
+                                fontFamily: 'El Messiri',
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            )),
+                      ),
+                      SizedBox(width: 50, child: Icon(Icons.mic))
+                    ]))),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60),
-              child: FlatButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                            colors: [
-                              greenLight,
-                              greenDark,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
-                      child: Center(
+                padding: const EdgeInsets.symmetric(horizontal: 45),
+                child: Row(children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.5,
+                    child: FlatButton(
+                        onPressed: () {},
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerRight,
+                                  end: Alignment.centerLeft,
+                                  colors: [
+                                    greenLight,
+                                    greenDark,
+                                  ],
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30))),
+                            child: Center(
+                              child: Text(
+                                'تسجيل الدخول',
+                                style: TextStyle(
+                                  fontFamily: 'El Messiri',
+                                  fontSize: 22,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ))),
+                  ),
+                  SizedBox(width: 5, child: Icon(Icons.mic))
+                ])),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Row(children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: FlatButton(
+                        onPressed: () {},
                         child: Text(
-                          'تسجيل الدخول',
+                          'لا تمتلك حساب ؟ إنشاء حساب جديد',
                           style: TextStyle(
                             fontFamily: 'El Messiri',
-                            fontSize: 22,
-                            color: Colors.white,
+                            fontSize: 16,
+                            color: Colors.black,
                           ),
-                        ),
-                      ))),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: FlatButton(
-                  onPressed: () {},
-                  child: Text(
-                    'لا تمتلك حساب ؟ إنشاء حساب جديد',
-                    style: TextStyle(
-                      fontFamily: 'El Messiri',
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  )),
-            )
+                        )),
+                  ),
+                  SizedBox(width: 5, child: Icon(Icons.mic))
+                ]))
           ],
         ));
   }

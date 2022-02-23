@@ -38,5 +38,3 @@ class ThemeHelper {
             borderSide: BorderSide(color: Colors.red, width: 2.0)));
   }
 }
-
-class loginFormStyle {}
