@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [Locale("ar", "AE")],
       locale: Locale("ar", "AE"),
       title: 'Welcome',
-      home: adminNav(),
+      home: officer(),
     );
   }
 }
