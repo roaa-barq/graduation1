@@ -76,7 +76,7 @@ class login extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Row(children: <Widget>[
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.4,
+                    width: MediaQuery.of(context).size.width / 1.2,
                     child: TextField(
                         cursorColor: Colors.black,
                         obscureText: true,
@@ -85,8 +85,7 @@ class login extends StatelessWidget {
                             Icons.perm_identity,
                             "رقم الهوية",
                             "أدخل رقم الهوية الخاص بك ..")),
-                  ),
-                  SizedBox(width: 50, child: Icon(Icons.mic))
+                  )
                 ])),
             SizedBox(
               height: 10,
@@ -95,7 +94,7 @@ class login extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Row(children: <Widget>[
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.4,
+                    width: MediaQuery.of(context).size.width / 1.2,
                     child: TextField(
                         cursorColor: Colors.black,
                         obscureText: true,
@@ -133,11 +132,10 @@ class login extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide(
                                     color: Colors.red, width: 2.0)))),
-                  ),
-                  SizedBox(width: 50, child: Icon(Icons.mic))
+                  )
                 ])),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Container(
                     alignment: Alignment.centerLeft,
                     child: Row(children: <Widget>[
@@ -153,11 +151,10 @@ class login extends StatelessWidget {
                                 color: Colors.black,
                               ),
                             )),
-                      ),
-                      SizedBox(width: 50, child: Icon(Icons.mic))
+                      )
                     ]))),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 45),
+                padding: const EdgeInsets.symmetric(horizontal: 65),
                 child: Row(children: <Widget>[
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.5,
@@ -190,11 +187,10 @@ class login extends StatelessWidget {
                                 ),
                               ),
                             ))),
-                  ),
-                  SizedBox(width: 5, child: Icon(Icons.mic))
+                  )
                 ])),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 55),
                 child: Row(children: <Widget>[
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.4,
@@ -208,8 +204,7 @@ class login extends StatelessWidget {
                             color: Colors.black,
                           ),
                         )),
-                  ),
-                  SizedBox(width: 5, child: Icon(Icons.mic))
+                  )
                 ]))
           ],
         ));

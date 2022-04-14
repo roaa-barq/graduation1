@@ -109,62 +109,66 @@ class welcome extends StatelessWidget {
                     ))),
             Center(
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 350, 50, 0),
-                  child: Row(children: <Widget>[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
-                      child: FlatButton(
-                          onPressed: () {},
-                          textColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                          child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.centerRight,
-                                    end: Alignment.centerLeft,
-                                    colors: [
-                                      greenLight,
-                                      greenDark,
-                                    ],
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30))),
-                              child: Center(
-                                child: Text(
-                                  'تسجيل الدخول',
-                                  style: TextStyle(
-                                    fontFamily: 'El Messiri',
-                                    fontSize: 22,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ))),
-                    ),
-                    SizedBox(width: 1, child: Icon(Icons.mic))
-                  ])),
+                padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                child: Image(
+                  image: AssetImage('assets/photos/Nablus-logo.png'),
+                  height: 150,
+                  width: 150,
+                ),
+              ),
             ),
             Center(
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 450, 50, 0),
-                  child: Row(children: <Widget>[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
-                      child: FlatButton(
-                          onPressed: () {},
-                          child: Text(
-                            'لا تمتلك حساب ؟ إنشاء حساب جديد',
-                            style: TextStyle(
-                              fontFamily: 'El Messiri',
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          )),
-                    ),
-                    SizedBox(width: 10, child: Icon(Icons.mic))
-                  ])),
+                  padding: const EdgeInsets.fromLTRB(0, 450, 0, 0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: FlatButton(
+                        onPressed: () {},
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerRight,
+                                  end: Alignment.centerLeft,
+                                  colors: [
+                                    greenLight,
+                                    greenDark,
+                                  ],
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30))),
+                            child: Center(
+                              child: Text(
+                                'تسجيل الدخول',
+                                style: TextStyle(
+                                  fontFamily: 'El Messiri',
+                                  fontSize: 22,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ))),
+                  )),
+            ),
+            Center(
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 550, 0, 0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: FlatButton(
+                        onPressed: () {},
+                        child: Text(
+                          'لا تمتلك حساب ؟ إنشاء حساب جديد',
+                          style: TextStyle(
+                            fontFamily: 'El Messiri',
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        )),
+                  )),
             )
           ],
         ),

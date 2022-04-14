@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:waste_collector/screens/splash.dart';
-import 'package:waste_collector/screens/login.dart';
-import 'package:waste_collector/screens/signup.dart';
+import 'package:waste_collector/screens/adminNav.dart';
+import 'package:waste_collector/screens/customer.dart';
+import 'package:waste_collector/screens/customerNav.dart';
+import 'package:waste_collector/screens/officerNav.dart';
+import 'package:waste_collector/screens/officersTable.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:waste_collector/screens/welcome.dart';
+import 'package:waste_collector/screens/splash.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [Locale("ar", "AE")],
       locale: Locale("ar", "AE"),
       title: 'Welcome',
-      home: signup(),
+      home: adminNav(),
     );
   }
 }
