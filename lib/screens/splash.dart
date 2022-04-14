@@ -22,7 +22,7 @@ class splash extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 50),
             child: Column(children: <Widget>[
-              Text('أهلا وسهلا',
+              Text('أهلاً وسهلاً',
                   style: TextStyle(
                     fontFamily: 'El Messiri',
                     fontSize: 45,
@@ -33,10 +33,18 @@ class splash extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Text('العنوان',
+              Text('دربك أقرب',
                   style: TextStyle(
                     fontFamily: 'El Messiri',
-                    fontSize: 55,
+                    fontSize: 40,
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                    //
+                  )),
+              Text('جامع النفايات الصلبة الذكي',
+                  style: TextStyle(
+                    fontFamily: 'El Messiri',
+                    fontSize: 20,
                     color: Colors.white,
                     decoration: TextDecoration.none,
                     //
@@ -44,30 +52,22 @@ class splash extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              Text('هنا سنتمكن من مساعدتك',
+              SizedBox(
+                width: 300,
+                child: Text(
+                  "هنا سنتمكن من مساعدتك  بما يخص النفايات الصلبة أنشئ حساب واستمتع بالتطبيق",
+                  maxLines: 3,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'El Messiri',
                     fontSize: 20,
                     color: Colors.white,
                     decoration: TextDecoration.none,
                     //
-                  )),
-              Text('بما يخص النفايات الصلبة',
-                  style: TextStyle(
-                    fontFamily: 'El Messiri',
-                    fontSize: 20,
-                    color: Colors.white,
-                    decoration: TextDecoration.none,
-                    //
-                  )),
-              Text('أنشئ حساب واستمتع بالتطبيق',
-                  style: TextStyle(
-                    fontFamily: 'El Messiri',
-                    fontSize: 20,
-                    color: Colors.white,
-                    decoration: TextDecoration.none,
-                    //
-                  )),
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ]),
           ),
           SizedBox(

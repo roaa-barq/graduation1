@@ -43,7 +43,7 @@ class signup extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(30, 150, 30, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
+                      width: MediaQuery.of(context).size.width/1.2,
                       child: TextField(
                           cursorColor: Colors.black,
                           obscureText: true,
@@ -53,13 +53,12 @@ class signup extends StatelessWidget {
                               "الإسم",
                               "أدخل الإسم الرباعي الخاص بك ..")),
                     ),
-                    SizedBox(width: 50, child: Icon(Icons.mic))
                   ])),
               Padding(
                   padding: const EdgeInsets.fromLTRB(30, 210, 30, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
+                      width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
                           cursorColor: Colors.black,
                           obscureText: true,
@@ -68,14 +67,13 @@ class signup extends StatelessWidget {
                               Icons.phone_android,
                               "رقم الهاتف",
                               "أدخل رقم الهاتف الخاص بك ..")),
-                    ),
-                    SizedBox(width: 50, child: Icon(Icons.mic))
+                    )
                   ])),
               Padding(
                   padding: const EdgeInsets.fromLTRB(30, 270, 30, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
+                      width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
                           cursorColor: Colors.black,
                           obscureText: true,
@@ -84,14 +82,13 @@ class signup extends StatelessWidget {
                               Icons.perm_identity,
                               "رقم الهوية",
                               "أدخل رقم الهوية الخاص بك ..")),
-                    ),
-                    SizedBox(width: 50, child: Icon(Icons.mic))
+                    )
                   ])),
               Padding(
                   padding: const EdgeInsets.fromLTRB(30, 330, 30, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
+                      width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
                           cursorColor: Colors.black,
                           obscureText: true,
@@ -130,14 +127,13 @@ class signup extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
                                       color: Colors.red, width: 2.0)))),
-                    ),
-                    SizedBox(width: 50, child: Icon(Icons.mic))
+                    )
                   ])),
               Padding(
                   padding: const EdgeInsets.fromLTRB(30, 390, 30, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.4,
+                      width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
                           cursorColor: Colors.black,
                           obscureText: true,
@@ -176,11 +172,10 @@ class signup extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
                                       color: Colors.red, width: 2.0)))),
-                    ),
-                    SizedBox(width: 50, child: Icon(Icons.mic))
+                    )
                   ])),
               Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 460, 30, 0),
+                  padding: const EdgeInsets.fromLTRB(55, 460, 55, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.4,
@@ -213,11 +208,10 @@ class signup extends StatelessWidget {
                                   ),
                                 ),
                               ))),
-                    ),
-                    SizedBox(width: 50, child: Icon(Icons.mic))
+                    )
                   ])),
               Padding(
-                  padding: const EdgeInsets.fromLTRB(22, 520, 22, 0),
+                  padding: const EdgeInsets.fromLTRB(45, 520, 45, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.3,
@@ -231,8 +225,7 @@ class signup extends StatelessWidget {
                               color: Colors.black,
                             ),
                           )),
-                    ),
-                    SizedBox(width: 1, child: Icon(Icons.mic))
+                    )
                   ])),
             ],
           ),
