@@ -1,18 +1,15 @@
-import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
-import 'package:circular_bottom_navigation/tab_item.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:waste_collector/constants.dart';
+import 'package:waste_collector/main.dart';
 import 'package:waste_collector/screens/addOfficer.dart';
 import 'package:waste_collector/screens/admin.dart';
-import 'package:waste_collector/screens/changeBasket.dart';
-import 'package:waste_collector/screens/customer.dart';
-import 'package:waste_collector/screens/map.dart';
-import 'package:waste_collector/screens/gps.dart';
 import 'package:waste_collector/screens/login.dart';
+import 'package:waste_collector/screens/officer.dart';
 import 'package:waste_collector/screens/officersTable.dart';
-import 'package:waste_collector/screens/profile.dart';
-import 'package:waste_collector/screens/signup.dart';
-import 'package:waste_collector/screens/welcome.dart';
+import 'package:waste_collector/screens/profileCustomer.dart';
+import 'package:http/http.dart' as http;
+import 'package:waste_collector/screens/profileOfficer.dart';
 
 class officerNav extends StatefulWidget {
   const officerNav({Key? key}) : super(key: key);
@@ -23,56 +20,14 @@ class officerNav extends StatefulWidget {
 }
 
 class _officerNavState extends State<officerNav> {
-  int selectedPos = 4;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  int selectedPos = 0;
 
-  var PageAll = [login(), profile(), map(), gps(), customer()];
+  var PageAll = [officerWelcome(), profileOfficer(), login()];
 
-  var slogan = 4;
+  var slogan = 0;
 
-  // var icon = IconData(slogan);
-
-  double bottomNavBarHeight = 70;
-
-  List<TabItem> tabItems = List.of([
-    new TabItem(Icons.logout, "تسجيل الخروج", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 15,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.person, "معلوماتي", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 15,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.map_outlined, "أقرب شاحنة", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 15,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.gps_fixed, "مساري", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 15,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.home, "الرئيسية", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 15,
-          color: Colors.white,
-        )),
-  ]);
-
-  CircularBottomNavigationController? _navigationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _navigationController = new CircularBottomNavigationController(selectedPos);
-  }
+  double bottomNavBarHeight = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -100,47 +55,61 @@ class _officerNavState extends State<officerNav> {
       case 2:
         slogan = 2;
         break;
-      case 3:
-        slogan = 3;
-        break;
-      case 4:
-        slogan = 4;
-        break;
     }
 
     return GestureDetector(
       child: Scaffold(
         body: PageAll[slogan],
       ),
-      onTap: () {
-        if (_navigationController?.value == tabItems.length - 1) {
-          _navigationController?.value = 0;
-        } else {
-          _navigationController?.value++;
-        }
-      },
+      onTap: () {},
     );
   }
 
   Widget bottomNav() {
-    return CircularBottomNavigation(
-      tabItems,
-      controller: _navigationController,
-      barHeight: bottomNavBarHeight,
-      normalIconColor: Colors.white,
-      barBackgroundColor: greenDark,
-      animationDuration: Duration(milliseconds: 300),
-      selectedCallback: (int selectedPos) {
-        setState(() {
-          this.selectedPos = selectedPos;
-        });
-      },
+    return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        color: greenDark,
+        backgroundColor: Colors.white,
+        height: 50,
+        key: _bottomNavigationKey,
+        items: <Widget>[
+          Icon(
+            (slogan == 0) ? Icons.home : Icons.home,
+            color: Colors.white,
+          ),
+          Icon(
+            (slogan == 1) ? Icons.person : Icons.person,
+            color: Colors.white,
+          ),
+          Icon(
+            (slogan == 2) ? Icons.logout : Icons.logout,
+            color: Colors.white,
+          ),
+        ],
+        animationDuration: Duration(milliseconds: 300),
+        onTap: (int selectedPos) {
+          setState(() {
+            if (selectedPos == 2) {
+              LogoutAll();
+            } else
+              this.selectedPos = selectedPos;
+          });
+        },
+      ),
+      body: PageAll[slogan],
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _navigationController?.dispose();
+  Future<void> LogoutAll() async {
+    var header = {"Authorization": "Bearer " + prefs.get("token").toString()};
+
+    var res = await http.post(Uri.parse(baseUrl + "/officers/logoutAll"),
+        headers: header);
+    if (res.statusCode == 200) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => login()),
+      );
+    }
   }
 }

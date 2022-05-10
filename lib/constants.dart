@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 const greenDark = Color(0xff057A0C);
 const greenLight = Color(0xff5FDC68);
+const box = Color(0xffecf5fd);
+const String baseUrl = "http://192.168.1.151:3080";
 
 class ThemeHelper {
   Icon? icon;

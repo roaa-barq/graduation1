@@ -1,8 +1,37 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:waste_collector/constants.dart';
+import 'package:http/http.dart' as http;
+import 'package:waste_collector/screens/customer.dart';
+import 'package:waste_collector/screens/customerNav.dart';
+import 'package:waste_collector/screens/login.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
-class signup extends StatelessWidget {
+class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);
+
+  @override
+  State<signup> createState() => _signupState();
+}
+
+class _signupState extends State<signup> {
+  late TextEditingController nameController;
+  late TextEditingController identityController;
+  late TextEditingController phoneController;
+  late TextEditingController passController;
+  late TextEditingController repassController;
+  bool pass = true;
+  bool repass = true;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    identityController = TextEditingController();
+    phoneController = TextEditingController();
+    passController = TextEditingController();
+    repassController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +72,10 @@ class signup extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(30, 150, 30, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
-                      width: MediaQuery.of(context).size.width/1.2,
+                      width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
+                          controller: nameController,
                           cursorColor: Colors.black,
-                          obscureText: true,
                           textAlign: TextAlign.right,
                           decoration: ThemeHelper().textInputDecoration(
                               Icons.perm_identity,
@@ -60,23 +89,8 @@ class signup extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
+                          controller: identityController,
                           cursorColor: Colors.black,
-                          obscureText: true,
-                          textAlign: TextAlign.right,
-                          decoration: ThemeHelper().textInputDecoration(
-                              Icons.phone_android,
-                              "رقم الهاتف",
-                              "أدخل رقم الهاتف الخاص بك ..")),
-                    )
-                  ])),
-              Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 270, 30, 0),
-                  child: Row(children: <Widget>[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: TextField(
-                          cursorColor: Colors.black,
-                          obscureText: true,
                           textAlign: TextAlign.right,
                           decoration: ThemeHelper().textInputDecoration(
                               Icons.perm_identity,
@@ -85,20 +99,39 @@ class signup extends StatelessWidget {
                     )
                   ])),
               Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 270, 30, 0),
+                  child: Row(children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      child: TextField(
+                          controller: phoneController,
+                          cursorColor: Colors.black,
+                          textAlign: TextAlign.right,
+                          decoration: ThemeHelper().textInputDecoration(
+                              Icons.phone_android,
+                              "رقم الهاتف",
+                              "أدخل رقم الهاتف الخاص بك ..")),
+                    )
+                  ])),
+              Padding(
                   padding: const EdgeInsets.fromLTRB(30, 330, 30, 0),
                   child: Row(children: <Widget>[
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
+                          controller: passController,
                           cursorColor: Colors.black,
-                          obscureText: true,
+                          obscureText: pass,
                           textAlign: TextAlign.right,
                           decoration: InputDecoration(
                               labelText: 'كلمة المرور',
                               hintText: 'أدخل كلمة المرور الخاصة بك ..',
-                              suffixIcon: Icon(
-                                Icons.remove_red_eye,
-                                color: Colors.black,
+                              suffixIcon: InkWell(
+                                onTap: _togglePass,
+                                child: Icon(
+                                  Icons.remove_red_eye,
+                                  color: Colors.black,
+                                ),
                               ),
                               prefixIcon: Icon(
                                 Icons.lock,
@@ -135,15 +168,19 @@ class signup extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.2,
                       child: TextField(
+                          controller: repassController,
                           cursorColor: Colors.black,
-                          obscureText: true,
+                          obscureText: repass,
                           textAlign: TextAlign.right,
                           decoration: InputDecoration(
                               labelText: 'تأكيد كلمة المرور',
                               hintText: 'أعد كتابة كلمة المرور الخاصة بك ..',
-                              suffixIcon: Icon(
-                                Icons.remove_red_eye,
-                                color: Colors.black,
+                              suffixIcon: InkWell(
+                                onTap: _retogglePass,
+                                child: Icon(
+                                  Icons.remove_red_eye,
+                                  color: Colors.black,
+                                ),
                               ),
                               prefixIcon: Icon(
                                 Icons.lock,
@@ -180,7 +217,9 @@ class signup extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.4,
                       child: FlatButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            signUp();
+                          },
                           textColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
@@ -216,7 +255,12 @@ class signup extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.3,
                       child: FlatButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => login()),
+                            );
+                          },
                           child: Text(
                             'هل تمتلك حساب ؟ تسجيل الدخول',
                             style: TextStyle(
@@ -232,5 +276,60 @@ class signup extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _togglePass() {
+    setState(() {
+      pass = !pass;
+    });
+  }
+
+  void _retogglePass() {
+    setState(() {
+      repass = !repass;
+    });
+  }
+
+  Future<void> signUp() async {
+    if (nameController.text.isEmpty ||
+        identityController.text.isEmpty ||
+        phoneController.text.isEmpty ||
+        passController.text.isEmpty ||
+        repassController.text.isEmpty) {
+      print("empty fields");
+      return;
+    }
+    if (passController.text != repassController.text) {
+      print("no match");
+      return;
+    }
+    var body = jsonEncode({
+      "name": nameController.text,
+      "Identity": identityController.text,
+      "phone": phoneController.text,
+      "password": passController.text,
+    });
+    var res = await http.post(Uri.parse(baseUrl + "/users"),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: body);
+    if (res.statusCode == 201) {
+      print("done");
+      clear();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => customerNav()),
+      );
+    } else
+      print("failed");
+  }
+
+  void clear() {
+    nameController.text = "";
+    phoneController.text = "";
+    identityController.text = "";
+    passController.text = "";
+    repassController.text = "";
   }
 }

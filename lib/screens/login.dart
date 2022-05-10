@@ -1,8 +1,39 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:waste_collector/constants.dart';
+import 'package:http/http.dart' as http;
+import 'package:waste_collector/screens/adminNav.dart';
+import 'package:waste_collector/screens/customer.dart';
+import 'package:waste_collector/screens/customerNav.dart';
+import 'package:waste_collector/screens/officerNav.dart';
+import 'package:waste_collector/screens/sharedPrefs.dart';
+import 'package:waste_collector/screens/signup.dart';
 
-class login extends StatelessWidget {
+class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
+
+  @override
+  State<login> createState() => _loginState();
+}
+
+class _loginState extends State<login> {
+  late TextEditingController nameController;
+  late TextEditingController identityController;
+  late TextEditingController phoneController;
+  late TextEditingController passController;
+  late TextEditingController repassController;
+  bool pass = true;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    identityController = TextEditingController();
+    phoneController = TextEditingController();
+    passController = TextEditingController();
+    repassController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +109,8 @@ class login extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.2,
                     child: TextField(
+                        controller: identityController,
                         cursorColor: Colors.black,
-                        obscureText: true,
                         textAlign: TextAlign.right,
                         decoration: ThemeHelper().textInputDecoration(
                             Icons.perm_identity,
@@ -96,15 +127,19 @@ class login extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.2,
                     child: TextField(
+                        controller: passController,
                         cursorColor: Colors.black,
-                        obscureText: true,
+                        obscureText: pass,
                         textAlign: TextAlign.right,
                         decoration: InputDecoration(
                             labelText: 'كلمة المرور',
                             hintText: 'أدخل كلمة المرور الخاصة بك ..',
-                            suffixIcon: Icon(
-                              Icons.remove_red_eye,
-                              color: Colors.black,
+                            suffixIcon: InkWell(
+                              onTap: _togglePass,
+                              child: Icon(
+                                Icons.remove_red_eye,
+                                color: Colors.black,
+                              ),
                             ),
                             prefixIcon: Icon(
                               Icons.lock,
@@ -159,7 +194,9 @@ class login extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.5,
                     child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          loginFunc();
+                        },
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
@@ -195,7 +232,12 @@ class login extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.4,
                     child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => signup()),
+                          );
+                        },
                         child: Text(
                           'لا تمتلك حساب ؟ إنشاء حساب جديد',
                           style: TextStyle(
@@ -208,5 +250,75 @@ class login extends StatelessWidget {
                 ]))
           ],
         ));
+  }
+
+  void _togglePass() {
+    setState(() {
+      pass = !pass;
+    });
+  }
+
+  Future<void> loginFunc() async {
+    int flag = 0;
+    if (identityController.text.isEmpty || passController.text.isEmpty) {
+      print("empty fields");
+      return;
+    }
+    var body = jsonEncode({
+      "Identity": identityController.text,
+      "password": passController.text,
+    });
+    var res = await http.post(Uri.parse(baseUrl + "/users/login"),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: body);
+
+    var res2 = await http.post(Uri.parse(baseUrl + "/officers/login"),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: body);
+
+    var res3 = await http.post(Uri.parse(baseUrl + "/admins/login"),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: body);
+
+    if (res.statusCode == 200) {
+      var body = jsonDecode(res.body);
+      sharedPrefs.saveToken(body['token']);
+      print("done");
+      clear();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => customerNav()),
+      );
+    } else if (res2.statusCode == 200) {
+      var body = jsonDecode(res2.body);
+      sharedPrefs.saveToken(body['token']);
+      print("done");
+      clear();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => officerNav()),
+      );
+    } else if (res3.statusCode == 200) {
+      var body = jsonDecode(res3.body);
+      sharedPrefs.saveToken(body['token']);
+      print("done");
+      clear();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => adminNav()),
+      );
+    } else
+      print("failed");
+  }
+
+  void clear() {
+    identityController.text = "";
+    passController.text = "";
   }
 }

@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:waste_collector/constants.dart';
+import 'package:waste_collector/models/fetchData.dart';
 
-class customer extends StatelessWidget {
+import '../models/userModel.dart';
+
+class customer extends StatefulWidget {
   const customer({Key? key}) : super(key: key);
 
+  @override
+  State<customer> createState() => _customerState();
+}
+
+class _customerState extends State<customer> {
+  fetchData _fetchData = fetchData();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,6 +20,7 @@ class customer extends StatelessWidget {
       body: SingleChildScrollView(
           child: Stack(
         children: [
+          myData(),
           Padding(
               padding: EdgeInsets.fromLTRB(15, 50, 15, 0),
               child: Container(
@@ -22,18 +32,35 @@ class customer extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15)),
               )),
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 270, 15, 0),
-            child: Text('أهلاً وسهلاً بك ..',
+            padding: const EdgeInsets.fromLTRB(0, 270, 10, 0),
+            child: Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  border: Border.all(
+                    color: box,
+                    width: 6,
+                  ),
+                  image: DecorationImage(
+                    image: AssetImage('assets/photos/avatar.png'),
+                    fit: BoxFit.cover,
+                  )),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 320, 90, 0),
+            child: Text('تمتع بخدماتنا',
                 style: TextStyle(
                   fontFamily: 'El Messiri',
-                  fontSize: 30,
+                  fontSize: 18,
                   color: Colors.black,
                   decoration: TextDecoration.none,
                   //
                 )),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 350, 15, 0),
+            padding: EdgeInsets.fromLTRB(15, 370, 15, 0),
             child: Text('من نحن ؟',
                 style: TextStyle(
                   fontFamily: 'El Messiri',
@@ -44,7 +71,7 @@ class customer extends StatelessWidget {
                 )),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 380, 15, 0),
+            padding: EdgeInsets.fromLTRB(15, 410, 15, 0),
             child: SizedBox(
               width: 500,
               child: Text(
@@ -112,7 +139,132 @@ class customer extends StatelessWidget {
             ),
           ),
           Padding(
-              padding: EdgeInsets.only(top: 1150),
+            padding: EdgeInsets.fromLTRB(15, 1200, 15, 0),
+            child: Text('تواصل معنا',
+                style: TextStyle(
+                  fontFamily: 'El Messiri',
+                  fontSize: 20,
+                  color: Colors.black,
+                  decoration: TextDecoration.none,
+                  //
+                )),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 1250),
+            child: Column(
+              children: [
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: box, borderRadius: BorderRadius.circular(15)),
+                    width: 350,
+                    height: 70,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Image.asset(
+                          'assets/photos/location.png',
+                          height: 35,
+                          width: 35,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('نابلس - دوار الحسين - المجمع الطابق الثامن',
+                            style: TextStyle(
+                              fontFamily: 'El Messiri',
+                              fontSize: 15,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
+                              //
+                            )),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 1340),
+            child: Column(
+              children: [
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: box, borderRadius: BorderRadius.circular(15)),
+                    width: 350,
+                    height: 70,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Image.asset(
+                          'assets/photos/email.png',
+                          height: 35,
+                          width: 35,
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Text('roaa.barq@gmail.com',
+                            style: TextStyle(
+                              fontFamily: 'El Messiri',
+                              fontSize: 20,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
+                              //
+                            )),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 1430),
+            child: Column(
+              children: [
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: box, borderRadius: BorderRadius.circular(15)),
+                    width: 350,
+                    height: 70,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Image.asset(
+                          'assets/photos/phone.png',
+                          height: 35,
+                          width: 35,
+                        ),
+                        SizedBox(
+                          width: 65,
+                        ),
+                        Text('970-569569044+',
+                            style: TextStyle(
+                              fontFamily: 'El Messiri',
+                              fontSize: 20,
+                              color: Colors.black,
+                              decoration: TextDecoration.none,
+                              //
+                            )),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+              padding: EdgeInsets.only(top: 1550),
               child: Container(
                 color: greenDark,
                 height: 170,
@@ -158,5 +310,32 @@ class customer extends StatelessWidget {
         ],
       )),
     );
+  }
+
+  Widget myData() {
+    return FutureBuilder(
+        future: _fetchData.fetchMyAccount(),
+        builder: (context, snapchot) {
+          var data = snapchot.data as userModel;
+          // data == null ? name = "" : name = data.name;
+          // data == null ? phone = "" : phone = data.phone;
+          // data == null ? password = "" : password = data.password;
+          // data == null ? id = "" : id = data.id;
+          return data == null
+              ? Text("جاري التحميل")
+              : Padding(
+                  padding: EdgeInsets.fromLTRB(20, 280, 90, 0),
+                  child: Text("أهلا وسهلا بك " + data.name + " ..",
+                      maxLines: 2,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontFamily: 'El Messiri',
+                        fontSize: 20,
+                        color: Colors.black,
+                        decoration: TextDecoration.none,
+                        //
+                      )),
+                );
+        });
   }
 }

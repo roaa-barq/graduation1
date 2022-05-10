@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:waste_collector/screens/adminNav.dart';
-import 'package:waste_collector/screens/customer.dart';
-import 'package:waste_collector/screens/customerNav.dart';
-import 'package:waste_collector/screens/officerNav.dart';
-import 'package:waste_collector/screens/officersTable.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:waste_collector/screens/login.dart';
+import 'package:waste_collector/screens/profileCustomer.dart';
 import 'package:waste_collector/screens/splash.dart';
 
-void main() {
+late SharedPreferences prefs;
+
+Future<void> main() async {
   runApp(MyApp());
+  prefs = await SharedPreferences.getInstance();
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [Locale("ar", "AE")],
       locale: Locale("ar", "AE"),
       title: 'Welcome',
-      home: officer(),
+      home: splash(),
     );
   }
 }

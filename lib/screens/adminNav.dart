@@ -1,18 +1,13 @@
-import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
-import 'package:circular_bottom_navigation/tab_item.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:waste_collector/constants.dart';
-import 'package:waste_collector/screens/addMap.dart';
+import 'package:waste_collector/main.dart';
 import 'package:waste_collector/screens/addOfficer.dart';
 import 'package:waste_collector/screens/admin.dart';
-import 'package:waste_collector/screens/changeBasket.dart';
-import 'package:waste_collector/screens/changeMap.dart';
-import 'package:waste_collector/screens/customer.dart';
 import 'package:waste_collector/screens/login.dart';
 import 'package:waste_collector/screens/officersTable.dart';
-import 'package:waste_collector/screens/profile.dart';
-import 'package:waste_collector/screens/signup.dart';
-import 'package:waste_collector/screens/welcome.dart';
+import 'package:waste_collector/screens/profileAdmin.dart';
+import 'package:http/http.dart' as http;
 
 class adminNav extends StatefulWidget {
   const adminNav({Key? key}) : super(key: key);
@@ -23,76 +18,14 @@ class adminNav extends StatefulWidget {
 }
 
 class _adminNavState extends State<adminNav> {
-  int selectedPos = 6;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  int selectedPos = 0;
 
-  var PageAll = [
-    login(),
-    profile(),
-    officer(),
-    changeMap(),
-    addMap(),
-    add(),
-    admin()
-  ];
+  var PageAll = [admin(), officer(), profileAdmin(), login()];
 
-  var slogan = 6;
+  var slogan = 0;
 
-  // var icon = IconData(slogan);
-
-  double bottomNavBarHeight = 70;
-
-  List<TabItem> tabItems = List.of([
-    new TabItem(Icons.logout, "تسجيل الخروج", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 10,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.person, "معلوماتي", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 10,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.list_alt, "الموظفين", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 10,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.change_circle, "تعديل سعة", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 10,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.pin_drop, "اضافة حاوية", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 10,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.person_add, "اضافة موظف", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 10,
-          color: Colors.white,
-        )),
-    new TabItem(Icons.home, "الرئيسية", greenDark,
-        labelStyle: TextStyle(
-          fontFamily: 'El Messiri',
-          fontSize: 10,
-          color: Colors.white,
-        )),
-  ]);
-
-  CircularBottomNavigationController? _navigationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _navigationController = new CircularBottomNavigationController(selectedPos);
-  }
+  double bottomNavBarHeight = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -123,50 +56,67 @@ class _adminNavState extends State<adminNav> {
       case 3:
         slogan = 3;
         break;
-      case 4:
-        slogan = 4;
-        break;
-      case 5:
-        slogan = 5;
-        break;
-      case 6:
-        slogan = 6;
-        break;
     }
 
     return GestureDetector(
       child: Scaffold(
         body: PageAll[slogan],
       ),
-      onTap: () {
-        if (_navigationController?.value == tabItems.length - 1) {
-          _navigationController?.value = 0;
-        } else {
-          _navigationController?.value++;
-        }
-      },
+      onTap: () {},
     );
   }
 
   Widget bottomNav() {
-    return CircularBottomNavigation(
-      tabItems,
-      controller: _navigationController,
-      barHeight: bottomNavBarHeight,
-      normalIconColor: Colors.white,
-      barBackgroundColor: greenDark,
-      animationDuration: Duration(milliseconds: 300),
-      selectedCallback: (int selectedPos) {
-        setState(() {
-          this.selectedPos = selectedPos;
-        });
-      },
+    return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        color: greenDark,
+        backgroundColor: Colors.white,
+        height: 50,
+        key: _bottomNavigationKey,
+        items: <Widget>[
+          Icon(
+            (slogan == 0) ? Icons.home : Icons.home,
+            color: Colors.white,
+          ),
+          Icon(
+            (slogan == 1)
+                ? Icons.supervised_user_circle_sharp
+                : Icons.supervised_user_circle_sharp,
+            color: Colors.white,
+          ),
+          Icon(
+            (slogan == 2) ? Icons.person : Icons.person,
+            color: Colors.white,
+          ),
+          Icon(
+            (slogan == 3) ? Icons.logout : Icons.logout,
+            color: Colors.white,
+          ),
+        ],
+        animationDuration: Duration(milliseconds: 300),
+        onTap: (int selectedPos) {
+          setState(() {
+            if (selectedPos == 3) {
+              LogoutAll();
+            } else
+              this.selectedPos = selectedPos;
+          });
+        },
+      ),
+      body: PageAll[slogan],
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _navigationController?.dispose();
+  Future<void> LogoutAll() async {
+    var header = {"Authorization": "Bearer " + prefs.get("token").toString()};
+
+    var res = await http.post(Uri.parse(baseUrl + "/admins/logoutAll"),
+        headers: header);
+    if (res.statusCode == 200) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => login()),
+      );
+    }
   }
 }
